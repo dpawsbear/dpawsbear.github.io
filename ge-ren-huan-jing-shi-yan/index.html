@@ -1,10 +1,11 @@
 
+<!DOCTYPE html>
 <html>
   <head>
     
 <meta charset="utf-8" >
 
-<title>爪熊小站</title>
+<title>个人环境实验 | 爪熊小站</title>
 <meta name="description" content="不断进步的小渣渣">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -77,81 +78,58 @@
 
 
       <div class="content-container">
-        
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://dpawsbear.github.io/ge-ren-huan-jing-shi-yan/">
-        <h2 class="post-title">个人环境实验</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2020-07-22</span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://dpawsbear.github.io/an-zhuang-pytorch/">
-        <h2 class="post-title">安装pytorch</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2020-07-22</span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://dpawsbear.github.io/hello-gridea/">
-        <h2 class="post-title">Hello Gridea</h2>
-      </a>
-      <div class="post-abstract">
-        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2018-12-12</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
+        <div class="post-detail">
+          
+          <h2 class="post-title">个人环境实验</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-07-22</span>
             
-              <a href="https://dpawsbear.github.io/4YqMYuYM6/">
-                Gridea
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://dpawsbear.github.io/hello-gridea/">
-        <div class="feature-container" style="background-image: url('https://dpawsbear.github.io/post-images/hello-gridea.png')">
+          </div>
+          <div class="post-content">
+            <ul>
+<li>安装Anaconda最新版</li>
+<li>安装pycharm最新版</li>
+<li>安装cuda10.2 （因为pytorch官网最新版只支持到10.2）</li>
+<li>安装cudnn7.6.5（直接把压缩包中相关文件夹拖到C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2中对应的目录即可）</li>
+<li>根据pytorch官网给定的选项进行安装pytorch</li>
+</ul>
+<pre><code class="language-python">pip install torch===1.5.0 torchvision===0.6.0 -f https://download.pytorch.org/whl/torch_stable.html
+</code></pre>
+<p>以上安装均为下载完成后双击然后下一步就可以。</p>
+<p>注意要为cuda的bin目录添加一下环境变量。</p>
+<p>遇到问题：cuda死活安装不上（win10 64bit）</p>
+<p>尝试方案零（失败）：</p>
+<p>直接安装，安装到vs插件的时候会报错一下，继续安装到后面驱动程序会失败，最后全部都失败了。</p>
+<p>尝试方案一（失败）：</p>
+<p>安全模式使用ddu卸载驱动，然后重启到正常模式安装cuda（期间系统会自动给你安装显卡驱动）。</p>
+<p>尝试方案二（失败）：</p>
+<p>安全模式使用ddu卸载驱动，然后正常模式中禁止windows update更新驱动，并且不安装vs的插件（还是失败了）</p>
+<p>尝试方案三（成功）：</p>
+<p>先把驱动卸载了，安装最新的驱动（ 前面组策略设置的禁止更新windows update更新驱动的选项要先关闭），最新驱动安装成功后再安装cuda10.2就直接安装上了（还是要去勾选vs插件）</p>
+<p>pycharm中测试pytorch GPU版本是否安装成功：</p>
+<pre><code class="language-python">import torch
+from torch import autograd
+
+print(torch.__version__)
+print('gpu:', torch.cuda.is_available())
+
+</code></pre>
+
+          </div>
         </div>
-      </a>
-    
-  </section>
 
-
-<div class="pagination-container">
-  
-  
-</div>
-
-
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://dpawsbear.github.io/an-zhuang-pytorch/">
+              <h3 class="post-title">
+                下一篇：安装pytorch
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
 
       <div class="site-footer">
   <div class="slogan">不断进步的小渣渣</div>

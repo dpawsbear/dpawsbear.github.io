@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://dpawsbear.github.io</id>
     <title>爪熊小站</title>
-    <updated>2020-07-22T08:04:14.124Z</updated>
+    <updated>2020-07-22T08:07:44.796Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://dpawsbear.github.io"/>
     <link rel="self" href="https://dpawsbear.github.io/atom.xml"/>
@@ -12,82 +12,22 @@
     <rights>All rights reserved 2020, 爪熊小站</rights>
     <entry>
         <title type="html"><![CDATA[个人环境实验]]></title>
-        <id>https://dpawsbear.github.io/post/ge-ren-huan-jing-shi-yan/</id>
-        <link href="https://dpawsbear.github.io/post/ge-ren-huan-jing-shi-yan/">
+        <id>https://dpawsbear.github.io/ge-ren-huan-jing-shi-yan/</id>
+        <link href="https://dpawsbear.github.io/ge-ren-huan-jing-shi-yan/">
         </link>
         <updated>2020-07-22T08:00:53.000Z</updated>
-        <content type="html"><![CDATA[<ul>
-<li>安装Anaconda最新版</li>
-<li>安装pycharm最新版</li>
-<li>安装cuda10.2 （因为pytorch官网最新版只支持到10.2）</li>
-<li>安装cudnn7.6.5（直接把压缩包中相关文件夹拖到C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2中对应的目录即可）</li>
-<li>根据pytorch官网给定的选项进行安装pytorch</li>
-</ul>
-<pre><code class="language-python">pip install torch===1.5.0 torchvision===0.6.0 -f https://download.pytorch.org/whl/torch_stable.html
-</code></pre>
-<p>以上安装均为下载完成后双击然后下一步就可以。</p>
-<p>注意要为cuda的bin目录添加一下环境变量。</p>
-<p>遇到问题：cuda死活安装不上（win10 64bit）</p>
-<p>尝试方案零（失败）：</p>
-<p>直接安装，安装到vs插件的时候会报错一下，继续安装到后面驱动程序会失败，最后全部都失败了。</p>
-<p>尝试方案一（失败）：</p>
-<p>安全模式使用ddu卸载驱动，然后重启到正常模式安装cuda（期间系统会自动给你安装显卡驱动）。</p>
-<p>尝试方案二（失败）：</p>
-<p>安全模式使用ddu卸载驱动，然后正常模式中禁止windows update更新驱动，并且不安装vs的插件（还是失败了）</p>
-<p>尝试方案三（成功）：</p>
-<p>先把驱动卸载了，安装最新的驱动（ 前面组策略设置的禁止更新windows update更新驱动的选项要先关闭），最新驱动安装成功后再安装cuda10.2就直接安装上了（还是要去勾选vs插件）</p>
-<p>pycharm中测试pytorch GPU版本是否安装成功：</p>
-<pre><code class="language-python">import torch
-from torch import autograd
-
-print(torch.__version__)
-print('gpu:', torch.cuda.is_available())
-
-</code></pre>
-]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[安装pytorch]]></title>
-        <id>https://dpawsbear.github.io/post/an-zhuang-pytorch/</id>
-        <link href="https://dpawsbear.github.io/post/an-zhuang-pytorch/">
+        <id>https://dpawsbear.github.io/an-zhuang-pytorch/</id>
+        <link href="https://dpawsbear.github.io/an-zhuang-pytorch/">
         </link>
         <updated>2020-07-22T07:50:24.000Z</updated>
-        <content type="html"><![CDATA[<p>因为系统没有nvidia的显卡，所以选择cpu版本：</p>
-<p>进入：<a href="https://pytorch.org/">pytorch官网</a></p>
-<figure data-type="image" tabindex="1"><img src="E:%5CSynologyDrive%5CCloudStation%5C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%5C%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.assets%5Cimage-20200527175513262.png" alt="image-20200527175513262" loading="lazy"></figure>
-<p>进行上图的选择后，底部会有相关的命令弹出。在anaconda中新建虚拟环境pytorch_study.并进入该环境中执行命令：</p>
-<figure data-type="image" tabindex="2"><img src="E:%5CSynologyDrive%5CCloudStation%5C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%5C%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.assets%5Cimage-20200527175640829.png" alt="image-20200527175640829" loading="lazy"></figure>
-<p>等待安装完成（如果有网络问题可以使用清华源加速）。</p>
-<p>或者使用本地的代理方式（这个针对window的terminal，如果是bash是source命令），我这里的http代理地址是 <strong>127.0.0.1:1081</strong>：</p>
-<pre><code class="language-bash">(pytorch) C:\Users\jet\PycharmProjects\pytorch_study&gt;set http_proxy=http://127.0.0.1:1081
-
-(pytorch) C:\Users\jet\PycharmProjects\pytorch_study&gt;set https_proxy=http://127.0.0.1:1081
-</code></pre>
-<p>测试参考这些文章：</p>
-<p><a href="https://www.cnblogs.com/chester-cs/p/11544898.html">PytorchMNIST-使用Pytorch进行MNIST字符集识别任务</a></p>
-<p><a href="https://www.jianshu.com/p/43478538bbc6">Pytorch实战（一）——MNIST手写数字识别--十分推荐</a></p>
-<p>这里是学习pytorch中学习使用mnist数据集的分类问题。</p>
-<pre><code class="language-python">#加载torchvision包内内置的MNIST数据集 这里涉及到transform:将图片转化成torchtensor
-train_dataset = datasets.MNIST(root='~/data/',train=True,transform=transforms.ToTensor(),download=True)
-</code></pre>
-<pre><code class="language-bash">Using downloaded and verified file: C:\Users\jet/data/MNIST\raw\train-images-idx3-ubyte.gz
-Extracting C:\Users\jet/data/MNIST\raw\train-images-idx3-ubyte.gz to C:\Users\jet/data/MNIST\raw
-Using downloaded and verified file: C:\Users\jet/data/MNIST\raw\train-labels-idx1-ubyte.gz
-Extracting C:\Users\jet/data/MNIST\raw\train-labels-idx1-ubyte.gz to C:\Users\jet/data/MNIST\raw
-Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to C:\Users\jet/data/MNIST\raw\t10k-images-idx3-ubyte.gz
-</code></pre>
-<p>会自动下载数据集。</p>
-<p>需要仔细看一下然后总结的知识。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/25686876">kaggle入门</a></p>
-<p>有人说用minst自带的数据集不利于理解一些输入和输出的信息。所以我也从kaggle下载了MNIST数据集：</p>
-<p><a href="https://www.kaggle.com/oddrationale/mnist-in-csv">下载链接</a></p>
-<p>师兄给的文档：https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html</p>
-]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://dpawsbear.github.io/post/hello-gridea/</id>
-        <link href="https://dpawsbear.github.io/post/hello-gridea/">
+        <id>https://dpawsbear.github.io/hello-gridea/</id>
+        <link href="https://dpawsbear.github.io/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
@@ -95,25 +35,6 @@ Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to C:\Use
 ]]></summary>
         <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>
