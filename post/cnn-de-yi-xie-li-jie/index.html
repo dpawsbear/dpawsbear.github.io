@@ -1,0 +1,228 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>CNN的一些理解 | 爪熊漫步</title>
+
+<link rel="shortcut icon" href="https://dpawsbear.github.io/favicon.ico?v=1595420202033">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://dpawsbear.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            爪熊漫步
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    CNN的一些理解
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-07-22 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h3 id="一-首先是卷积">一、首先是卷积</h3>
+<p>深度学习的卷积和图片处理中的卷积有些许不同，但都差不多。</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/07/22/4gYu1sLviAFRaON.png" alt="image-20200617082906118" loading="lazy"></figure>
+<p>上图是图像处理中的卷积操作，一般而言，卷积核中所有元素之和等于1，可以不等于1，当&gt;1时，生成的图片亮度会增加，小于0时，生成的图片亮度会降低。</p>
+<p>针对输入图片中的单个像素，将它的值由周围临近像素值得加权平均。而这种加权平均的操作产生的新的像素值按照次序可以产生一张新的输出图片。</p>
+<p>上面的演示图片最后有一个平均操作，在深度学习中，不需要再这样操作，直接逐元素相乘再相加就可以了。</p>
+<h4 id="11-卷积操作中的padding">1.1 卷积操作中的padding</h4>
+<p>因为卷积核有大小，正常的原始图片经过卷积后宽和高都会有所缩减，如果想要不对生成的图片的宽和高有所缩减，就需要对元素图片的外围先补0，然后再卷积。</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2020/07/22/IXDfTb2aFlzJKWr.png" alt="image-20200617084103728" loading="lazy"></figure>
+<p>其中 stride 是每次卷积移动的跨度，默认是1，也可以是其他值。如果得到的count是偶数，如2，这样就需要在图片的上下左右分别加一行0。如果得到的count是奇数如5，可以让一边的补0多一点，另一边的补0少一点，比如上和左，补2行0，下和右，补三行0。这样子padding过后再卷积就可以让输出图片的尺寸和原始图片一致。</p>
+<h4 id="12-真正一张rgb图的卷积操作">1.2 真正一张RGB图的卷积操作</h4>
+<p>一张RGB图有着三个通道，分别是R、G、B。如果输出的特征图只想要一个，且卷积核为5x5。则，如下图所示：</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2020/07/22/quj9KmFY8MUh7xV.png" alt="image-20200617093446955" loading="lazy"></figure>
+<p>可以看到这里实际用的kernel的大小是一个 [3,5,5]，表示有三个5*5的kernel。最后得到的特征图是R通道与R Kernel的卷积 + G通道与G Kernel的卷积 + B通道与B Kernel的卷积 ，也就是三个卷积之和对应位置相加。（所以输出图像可以理解为只有一个通道了）</p>
+<p>以此类推，想要从一张RGB图中得到 64个特征图，如图所示：</p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2020/07/22/HQdnfoKvqbZa75Y.png" alt="image-20200617094051854" loading="lazy"></figure>
+<p>假设kernel仍然是5*5的话，这里需要的kernel 实际上是 [64, 3, 5, 5]这么多个，最后得到的64个特征图也是单通道的，而不是RGB通道了。</p>
+<h3 id="二-是pooling-subsample">二、是pooling、subsample。</h3>
+<h4 id="21-pooling-池化">2.1 pooling 池化</h4>
+<figure data-type="image" tabindex="5"><img src="https://img-blog.csdn.net/20130918153655515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2lsZW5jZTEyMTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img" loading="lazy"></figure>
+<p>矩阵A的大小是20x20，要进行大小为10x10的池化，得到结果就是上图中蓝色部分。池化也分为平均值和最大值等，如最大值操作就是在10x10对应的区域里面选最大的作为结果，平均值是把10x10中所有值进行一个平均。</p>
+<h4 id="22-降采样subsample和下采样downsample">2.2 降采样（subSample）和下采样（downSample）</h4>
+<p>本质上就是缩小图片，达到降维的效果。</p>
+<h4 id="23-上采样upsample和-图像插值interpolating">2.3 上采样（upSample）和 图像插值（interpolating）</h4>
+<p>一定程度上提高图片的分辨率，目的有可能如下：1，可以显示在更高分辨率的显示设备上。2.有些缩放操作可以为图像带来一些额外的信息。</p>
+<h3 id="三-batch-norm">三、Batch Norm</h3>
+<p>先说好处：</p>
+<ul>
+<li>Converge Faster 收敛速度更快了(不处于sigmod的饱和区)</li>
+<li>Better performance 更好的性能</li>
+<li>Robust (stable and larger learning rate)</li>
+</ul>
+<h3 id="四-resnet的知识">四、ResNet的知识</h3>
+<p>引用下某大佬给的总结的图（网页关了找不到了），截取了其中的一小部分说明问题。</p>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2020/07/22/zUatocTEBb7vgDh.png" alt="image-20200619175000479" loading="lazy"></figure>
+<p>左边的short-Cut有些是虚线，有些是实线。虚线表明这个块的输入维度和输出维度不同，不能够直接相加，而实线表明这个块的输入维度和输出维度相同，可以直接相加。这两种实现的逻辑都是一样的。</p>
+<h4 id="前人的经验">前人的经验</h4>
+<ol>
+<li>VGG发现卷积核，窗口越大，越接近全连接层的效果，权值也越多。反而像3x3，1x1这样子的小窗口效果更好一些（减少计算量而不减少精度，提高计算速度）。</li>
+<li>ResNet 中要添加Batch_Norm才可以训练的更稳定</li>
+<li>使用ResNet的时候，每一个block的输出相较于输入的话通道数增加了，长和宽减少，并且最后一层的长和宽减少到3x3 4x4 或者 1x1 这样子的效果会比较好。</li>
+<li>可以把图像均匀的分布在0的周围。使用下面的</li>
+</ol>
+<pre><code class="language-python">transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                             std=[0.229, 0.224, 0.225])
+# 上面的是imagenet 统计得到的，就是这个数值，直接用就可以了。
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://dpawsbear.github.io/post/ge-ren-huan-jing-shi-yan/" class="post-title gt-a-link">
+                    个人环境实验
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/" class="leancloud_visitors" data-flag-title="CNN的一些理解">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'bD8AJitNuPISAOgQ1ijJ5Bcn-gzGzoHsz',
+		appKey: 'UdH4EzxxT6Wd92sdqC6n9ohC',
+		avatar: 'wavatar',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">一个怀揣着大梦想的小渣渣工程师</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/dpawsbear" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
