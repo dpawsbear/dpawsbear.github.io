@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>个人环境实验 | 爪熊漫步</title>
+<title>CNN | 爪熊漫步</title>
 
 <link rel="shortcut icon" href="https://dpawsbear.github.io/favicon.ico?v=1595420285302">
 
@@ -26,11 +26,11 @@
 
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -79,98 +79,53 @@
         </div>
     </div>
 </nav>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    个人环境实验
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-07-22 ·
-                    </time>
-                    
-                </div>
-                <div class="post-content">
-                    <ul>
-<li>安装Anaconda最新版</li>
-<li>安装pycharm最新版</li>
-<li>安装cuda10.2 （因为pytorch官网最新版只支持到10.2）</li>
-<li>安装cudnn7.6.5（直接把压缩包中相关文件夹拖到C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2中对应的目录即可）</li>
-<li>根据pytorch官网给定的选项进行安装pytorch</li>
-</ul>
-<pre><code class="language-python">pip install torch===1.5.0 torchvision===0.6.0 -f https://download.pytorch.org/whl/torch_stable.html
-</code></pre>
-<p>以上安装均为下载完成后双击然后下一步就可以。</p>
-<p>注意要为cuda的bin目录添加一下环境变量。</p>
-<p>遇到问题：cuda死活安装不上（win10 64bit）</p>
-<p>尝试方案零（失败）：</p>
-<p>直接安装，安装到vs插件的时候会报错一下，继续安装到后面驱动程序会失败，最后全部都失败了。</p>
-<p>尝试方案一（失败）：</p>
-<p>安全模式使用ddu卸载驱动，然后重启到正常模式安装cuda（期间系统会自动给你安装显卡驱动）。</p>
-<p>尝试方案二（失败）：</p>
-<p>安全模式使用ddu卸载驱动，然后正常模式中禁止windows update更新驱动，并且不安装vs的插件（还是失败了）</p>
-<p>尝试方案三（成功）：</p>
-<p>先把驱动卸载了，安装最新的驱动（ 前面组策略设置的禁止更新windows update更新驱动的选项要先关闭），最新驱动安装成功后再安装cuda10.2就直接安装上了（还是要去勾选vs插件）</p>
-<p>pycharm中测试pytorch GPU版本是否安装成功：</p>
-<pre><code class="language-python">import torch
-from torch import autograd
-
-print(torch.__version__)
-print('gpu:', torch.cuda.is_available())
-
-</code></pre>
-
-                </div>
-            </article>
+        <div class="current-tag-container">
+            <h2 class="title gt-c-content-color-first">
+                #CNN
+            </h2>
         </div>
-
+        <div class="post-list-container">
+    <div class="post-inner">
         
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://dpawsbear.github.io/post/an-zhuang-pytorch/" class="post-title gt-a-link">
-                    安装pytorch
-                </a>
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://dpawsbear.github.io/post/cnn-de-yi-xie-li-jie/">
+                            <span class="post-title gt-c-content-color-first">CNN的一些理解</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2020-07-22 ·
+                        </time>
+                        
+                            <a href="https://dpawsbear.github.io/tag/lQctUcvvc/" class="post-tag">
+                                # CNN
+                            </a>
+                        
+                            <a href="https://dpawsbear.github.io/tag/Fjlnur9f2/" class="post-tag">
+                                # pytorch
+                            </a>
+                        
+                    </div>
+                </div>
+                
+                    <a href="https://dpawsbear.github.io/post/cnn-de-yi-xie-li-jie/" class="post-feature-image"
+                       style="background-image: url('https://i.loli.net/2020/07/22/yU7vcpruKfJXZgd.png')">
+                    </a>
+                
             </div>
         
-
-        
-            <span id="/post/" class="leancloud_visitors" data-flag-title="个人环境实验">
-                <em class="post-meta-item-text">阅读量 </em>
-                <i class="leancloud-visitors-count">0</i>
-            </span>
-        
-
-        
-
-        
-            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
-
-<style>
-	div#vcomments{
-		width:100%;
-		max-width: 1000px;
-		padding: 2.5%
-	}
-</style>
-
-
-	<div id="vcomments"></div>
-
-<script>
-	new Valine({
-		el: '#vcomments',
-		appId: 'bD8AJitNuPISAOgQ1ijJ5Bcn-gzGzoHsz',
-		appKey: 'UdH4EzxxT6Wd92sdqC6n9ohC',
-		avatar: 'wavatar',
-		pageSize: 5,
-		recordIp: true,
-		placeholder: 'Just Go Go',
-		visitor: true,
-	});
-</script>
-
-        
+    </div>
+</div>
+        <div class="pagination-container">
+    
+    
+</div>
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">一个怀揣着大梦想的小渣渣工程师</div>
