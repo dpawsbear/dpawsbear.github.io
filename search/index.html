@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -30,10 +31,19 @@
         gtag('config', 'UA-173243431-1');
     </script>
     
+    <script src="https://dpawsbear.github.io/media/gridea-search/fuse.basic.min.js"></script>
+    <script src="https://dpawsbear.github.io/media/gridea-search/ejs.min.js"></script>
+    <script src="https://dpawsbear.github.io/media/gridea-search/gridea-search.js"></script>
+    <script src="https://dpawsbear.github.io/media/gridea-search/result-template.ejs" type="text/ejs"></script>
 </head>
 
 <body>
-    <div class="main">
+    <style>
+        .searched-keyword {
+            background-color: yellow;
+        }
+    </style>
+    <div class="main animated">
         <div class="header">
     <div class="nav">
         <div class="logo">
@@ -103,14 +113,12 @@
         });
     });
 </script>
-
-            <div class="tags-container main-container">
-                <div class="tags-group">
-                    
-                </div>
-            </div>
-
-            <div class="site-footer">
+        <div id="gridea-search-result" data-update="1595409533116">
+            <div class="searching">搜索中......</div>
+            <div class="no-result" style="display:none">未搜索到相关文章</div>
+        </div>
+    </div>
+    <div class="site-footer">
    |
   <a class="rss" href="https://dpawsbear.github.io/atom.xml" target="_blank">RSS</a>
 </div>
@@ -129,7 +137,6 @@
 })();
 </script>
 
-    </div>
 </body>
 
 </html>
