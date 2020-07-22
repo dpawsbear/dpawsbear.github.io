@@ -2,24 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>安装pytorch | Gridea</title>
 <link rel="shortcut icon" href="https://dpawsbear.github.io/favicon.ico?v=1595404270820">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://dpawsbear.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://dpawsbear.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="安装pytorch | Gridea - Atom Feed" href="https://dpawsbear.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="因为系统没有nvidia的显卡，所以选择cpu版本：
+进入：pytorch官网
 
-🏠 关于本站
-小渣渣的站点
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+进行上图的选择后，底部会有相关的命令弹出。在anaconda中新建虚拟环境pytorch_study.并进入该环境中执行命令：
+
+等待安装完成（如果有网络问题..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -82,47 +79,68 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              安装pytorch
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-07-22
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>小渣渣的站点</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <p>因为系统没有nvidia的显卡，所以选择cpu版本：</p>
+<p>进入：<a href="https://pytorch.org/">pytorch官网</a></p>
+<figure data-type="image" tabindex="1"><img src="%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.assets%5Cimage-20200527175513262.png" alt="image-20200527175513262" loading="lazy"></figure>
+<p>进行上图的选择后，底部会有相关的命令弹出。在anaconda中新建虚拟环境pytorch_study.并进入该环境中执行命令：</p>
+<figure data-type="image" tabindex="2"><img src="%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.assets%5Cimage-20200527175640829.png" alt="image-20200527175640829" loading="lazy"></figure>
+<p>等待安装完成（如果有网络问题可以使用清华源加速）。</p>
+<p>或者使用本地的代理方式（这个针对window的terminal，如果是bash是source命令），我这里的http代理地址是 <strong>127.0.0.1:1081</strong>：</p>
+<pre><code class="language-bash">(pytorch) C:\Users\jet\PycharmProjects\pytorch_study&gt;set http_proxy=http://127.0.0.1:1081
+
+(pytorch) C:\Users\jet\PycharmProjects\pytorch_study&gt;set https_proxy=http://127.0.0.1:1081
+</code></pre>
+<p>测试参考这些文章：</p>
+<p><a href="https://www.cnblogs.com/chester-cs/p/11544898.html">PytorchMNIST-使用Pytorch进行MNIST字符集识别任务</a></p>
+<p><a href="https://www.jianshu.com/p/43478538bbc6">Pytorch实战（一）——MNIST手写数字识别--十分推荐</a></p>
+<p>这里是学习pytorch中学习使用mnist数据集的分类问题。</p>
+<pre><code class="language-python">#加载torchvision包内内置的MNIST数据集 这里涉及到transform:将图片转化成torchtensor
+train_dataset = datasets.MNIST(root='~/data/',train=True,transform=transforms.ToTensor(),download=True)
+</code></pre>
+<pre><code class="language-bash">Using downloaded and verified file: C:\Users\jet/data/MNIST\raw\train-images-idx3-ubyte.gz
+Extracting C:\Users\jet/data/MNIST\raw\train-images-idx3-ubyte.gz to C:\Users\jet/data/MNIST\raw
+Using downloaded and verified file: C:\Users\jet/data/MNIST\raw\train-labels-idx1-ubyte.gz
+Extracting C:\Users\jet/data/MNIST\raw\train-labels-idx1-ubyte.gz to C:\Users\jet/data/MNIST\raw
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to C:\Users\jet/data/MNIST\raw\t10k-images-idx3-ubyte.gz
+</code></pre>
+<p>会自动下载数据集。</p>
+<p>需要仔细看一下然后总结的知识。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/25686876">kaggle入门</a></p>
+<p>有人说用minst自带的数据集不利于理解一些输入和输出的信息。所以我也从kaggle下载了MNIST数据集：</p>
+<p><a href="https://www.kaggle.com/oddrationale/mnist-in-csv">下载链接</a></p>
+<p>师兄给的文档：https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://dpawsbear.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
         
 
         
