@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://dpawsbear.github.io</id>
     <title>Gridea</title>
-    <updated>2020-07-22T07:51:13.641Z</updated>
+    <updated>2020-07-22T07:55:14.768Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://dpawsbear.github.io"/>
     <link rel="self" href="https://dpawsbear.github.io/atom.xml"/>
@@ -18,9 +18,9 @@
         <updated>2020-07-22T07:50:24.000Z</updated>
         <content type="html"><![CDATA[<p>因为系统没有nvidia的显卡，所以选择cpu版本：</p>
 <p>进入：<a href="https://pytorch.org/">pytorch官网</a></p>
-<figure data-type="image" tabindex="1"><img src="%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.assets%5Cimage-20200527175513262.png" alt="image-20200527175513262" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="E:%5CSynologyDrive%5CCloudStation%5C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%5C%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.assets%5Cimage-20200527175513262.png" alt="image-20200527175513262" loading="lazy"></figure>
 <p>进行上图的选择后，底部会有相关的命令弹出。在anaconda中新建虚拟环境pytorch_study.并进入该环境中执行命令：</p>
-<figure data-type="image" tabindex="2"><img src="%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.assets%5Cimage-20200527175640829.png" alt="image-20200527175640829" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="E:%5CSynologyDrive%5CCloudStation%5C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%5C%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87.assets%5Cimage-20200527175640829.png" alt="image-20200527175640829" loading="lazy"></figure>
 <p>等待安装完成（如果有网络问题可以使用清华源加速）。</p>
 <p>或者使用本地的代理方式（这个针对window的terminal，如果是bash是source命令），我这里的http代理地址是 <strong>127.0.0.1:1081</strong>：</p>
 <pre><code class="language-bash">(pytorch) C:\Users\jet\PycharmProjects\pytorch_study&gt;set http_proxy=http://127.0.0.1:1081
